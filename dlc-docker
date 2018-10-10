@@ -1,0 +1,175 @@
+#!/usr/bin/env bash
+# Copyright (c) 2015, NVIDIA CORPORATION. All rights reserved.
+
+DOCKER=${DOCKER:-"nvidia-docker"}
+
+NV_DEVICE="/dev/nvidia"
+UVM_DEVICE="${NV_DEVICE}-uvm"
+CTL_DEVICE="${NV_DEVICE}ctl"
+
+CUDA_VERSION_LABEL="com.nvidia.cuda.version"
+
+NV_BINS_VOLUME="/usr/local/bin"
+NV_BINS="nvidia-cuda-mps-control \
+         nvidia-cuda-mps-server \
+         nvidia-debugdump \
+         nvidia-persistenced \
+         nvidia-smi"
+
+NV_LIBS_VOLUME="/usr/local/nvidia"
+NV_LIBS_CUDA="cuda \
+              nvcuvid \
+              nvidia-compiler \
+              nvidia-encode \
+              nvidia-ml"
+
+NV_DOCKER_ARGS=""
+
+parse_docker_args()
+{
+    local args="$1"
+    local help="$2"
+
+    local shift=1
+    local skip=0
+    local non_bool_args="$( $DOCKER help $help | \
+                            sed '/^\s*\(-[^=]\+\)=[^{true}{false}].*/!d;s//\1/;s/, /\n/' )"
+
+    for arg in $args; do
+        test $skip -eq 1 && skip=0 && continue
+        case $arg in
+            -*)
+                for nb_arg in $non_bool_args; do
+                    test $arg = $nb_arg && skip=1 && break
+                done
+                shift=$((shift+$skip+1)) ;;
+            *)
+                return $shift ;;
+        esac
+    done
+    return 0
+}
+
+# parse_docker_args "$*"; ret=$?
+# command must be the first argument
+CMD=$1
+
+ret="$*"
+echo "ret" $ret $1
+USER_ARGS=""
+nargs=$(echo "$*" | wc -w)
+i=0; while [ $i -lt $nargs ]; do
+    if [[ $1 == "-p" ]] || [[ $1 == "-e" ]]
+    then
+       if [[ $2 == "USER_GROUPS"* ]]
+       then
+          USER_GROUPS=${2#*=}
+       elif [[ $2 == "USER_ENCRYPTED_PASSWORD"* ]]
+       then
+          USER_ENCRYPTED_PASSWORD=${2#*=}
+       elif [[ $2 == "USER="* ]]
+       then
+          USER_NAME=${2#*=}
+       elif [[ $2 == "USER_ID"* ]]
+       then
+          USER_ID=${2#*=}
+       elif [[ $2 == *":22" ]]
+       then
+          SSHPORT=${2%:*}
+       elif [[ $2 == *":8888" ]]
+       then
+          JUPYTERPORT=${2%:*}
+       else
+          USER_ARGS="$USER_ARGS $1 $2"
+       fi
+
+       shift
+       shift
+       i=$((i+2))
+    elif [[ $1 == $CMD ]]
+    then
+        shift
+        i=$((i+1))
+    else
+       USER_ARGS="$USER_ARGS $1"
+       shift
+       i=$((i+1))
+    fi
+done
+
+echo "1st CMD" $CMD
+
+if [ -z "$USER_GROUPS" ] ; then
+    USER_GROUPS="sudo"
+fi
+
+if [ -z "$USER_NAME" ] ; then
+    USER_NAME=$USER
+fi
+
+if [ -z "$USER_ID" ] ; then
+    USER_ID=$UID
+fi
+
+echo
+echo "* Setting user name to:             $USER_NAME"
+echo "* Setting user ID to:               $USER_ID"
+echo "* Setting user groups to:           $USER_GROUPS"
+
+if [ -z "$USER_ENCRYPTED_PASSWORD" ]
+    then
+        _PW="pw"
+        echo "* Setting password to:              $_PW"
+        USER_ENCRYPTED_PASSWORD=`perl -e 'print crypt('"$_PW"', "aa"),"\n"'`
+else
+    echo "* Setting user-defined password:    $USER_ENCRYPTED_PASSWORD"
+fi
+
+# find an open port to bind SSH and JUPYTER-NOTEBOOK
+#!/bin/bash
+if [ -z "$SSHPORT" ] ; then
+    read LOWERPORT UPPERPORT < /proc/sys/net/ipv4/ip_local_port_range
+    while :
+    do
+        SSHPORT="`shuf -i $LOWERPORT-$UPPERPORT -n 1`"
+        ss -lpn | grep -q ":$SSHPORT " || break
+    done
+fi
+
+#echo "* Setting SSH port binding to:      $SSHPORT (to set manually add -p $SSHPORT:22 as flag)"
+
+if [ -z "$JUPYTERPORT" ] ; then
+    while :
+    do
+       JUPYTERPORT="`shuf -i 600-700 -n 1`"
+       ss -lpn | grep -q ":$JUPYTERPORT " || break
+    done
+fi
+
+echo "* Setting Notebook port binding to: $JUPYTERPORT (to set manually add -p $JUPYTERPORT:8888 as flag)"
+echo 
+echo "You can now open the notebook on the host machine by directing your browser to"
+echo
+echo "    http://localhost:$JUPYTERPORT"
+echo
+
+if [ -z "$USER_HOME" ] ; then
+   USER_HOME=/home/$USER_NAME
+fi
+
+NV_DOCKER_ARGS="$NV_DOCKER_ARGS -v $USER_HOME:$USER_HOME -p $SSHPORT:22 -p $JUPYTERPORT:8888 -e USER_GROUPS=$USER_GROUPS -e USER=$USER_NAME -e USER_ID=$USER_ID -e USER_ENCRYPTED_PASSWORD=$USER_ENCRYPTED_PASSWORD -e USER_HOME=$USER_HOME -e GPU=$GPU"
+
+#echo "DOCKER:" $DOCKER
+#echo " "
+#echo "CMD: " $CMD
+#echo " "
+#echo "NV_DOCKER_ARGS: " $NV_DOCKER_ARGS
+#echo " "
+#echo "USER_ARGS: " $USER_ARGS
+#echo " "
+#echo "GPU: " $GPU
+#echo " "
+#echo "COMMAND: NV_GPU=$GPU" $DOCKER $CMD $NV_DOCKER_ARGS $(echo \$$USER_ARGS | cut -d " " -f2-)
+#echo " "
+echo $GPU $DOCKER $CMD $NV_DOCKER_ARGS $(echo \$$USER_ARGS | cut -d " " -f2-)
+NV_GPU=$GPU $DOCKER $CMD $NV_DOCKER_ARGS $(echo \$$USER_ARGS | cut -d " " -f2-)
