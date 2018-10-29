@@ -4,7 +4,7 @@
 
 This package will allow you to run [DeepLabCut](https://github.com/AlexEMG/DeepLabCut) with everything pre-installed inside a Docker container.
 
-This Docker file is based off the [Bethge lab container](https://github.com/bethgelab/docker). Specifically, the one we provide comes with **Ubuntu 14.04 + Cuda 8.0 + CuDNN v5** and **Tensorflow 1.2** and the required python packages.
+This Docker file is based off the [Bethge lab container](https://github.com/bethgelab/docker). Specifically, the one we provide comes with **Ubuntu + Cuda 9.0 + CuDNN v7** and **Tensorflow 1.5** and the required python packages.
 
 
 NOTE: [this container does not work on windows hosts!](https://github.com/NVIDIA/nvidia-docker/issues/43)
