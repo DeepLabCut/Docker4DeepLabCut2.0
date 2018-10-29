@@ -10,6 +10,8 @@ RUN apt-get -y install ffmpeg
 RUN pip3 install deeplabcut==0.0.dev1
 #install the dependenices, but not the full package yet... 
 
+RUN pip install tensorflow-gpu==1.8
+
 RUN pip install ipywidgets
 RUN pip3 install ipywidgets
 
