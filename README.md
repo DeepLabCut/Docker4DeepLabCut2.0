@@ -82,7 +82,7 @@ Get the token: in the terminal look at the docker log; copy and paste the value 
 Now you have an Ubuntu with **Python3** and a GPU-installed with **Tensorflow 1.8**, and all the other dependencies ... installed! Happy DeepLabCutting! 
 
 # Check your installation:
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github.com/MMathisLab/Docker4DeepLabCut2.0/blob/blob/master/checkTFversion_and_GPU.ipynb)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MMathisLab/Docker4DeepLabCut2.0/blob/master/checkTFversion_and_GPU.ipynb)
 
 # Docker Quick Tips:
 Check which containers are running:
