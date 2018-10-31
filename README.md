@@ -2,7 +2,7 @@
 
 # Docker Environment for DeepLabCut2.0
 
-This package will allow you to run [DeepLabCut](https://github.com/AlexEMG/DeepLabCut) with everything pre-installed inside a Docker container. To note, the GUIs will not work in Docker, so we recommend you use them in an Anaconda Environemnt (see main repo for installation instructions). The use-case for the Docker is for the steps that requite a GPu, namely training and inference (i.e. video analysis). This can be done inside this container on your computer, or deployed to a cloud!
+This package will allow you to run [DeepLabCut](https://github.com/AlexEMG/DeepLabCut) with everything pre-installed inside a Docker container. To note, the GUIs will not work in Docker, so we recommend you use them in an Anaconda Environemnt (see main repo for installation instructions). The use-case for the Docker is for the steps that requite a GPU, namely training and inference (i.e. video analysis). This can be done inside this container on your computer, or deployed to a cloud!
 
 This Docker file is based off the [Bethge lab container](https://github.com/bethgelab/docker). Specifically, the one we provide comes with **Ubuntu 16.04 + CUDA 9.0 + CuDNN v7** and **Tensorflow 1.8** and the required python packages. 
 
