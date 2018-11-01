@@ -72,7 +72,7 @@ Access your linked (internal home) directory:
 cd ../../../home/
 ```  
 <p align="center">
-<img src="docs/entercontainerterminal.png" width="50%">
+<img src="docs/entercontainerterminal.png" width="100%">
 </p>
 
 Now, for the training and video analysis you need to supress the GUI support: 
@@ -80,7 +80,7 @@ Now, for the training and video analysis you need to supress the GUI support:
 ``Linux: export DLClight=True``
 
 <p align="center">
-<img src="docsexport.png" width="50%">
+<img src="docs/export.png" width="100%">
 </p>
 
 Now you have an Ubuntu with **Python3** and a GPU-installed with **Tensorflow 1.8**, and all the other dependencies ... installed! Happy DeepLabCutting! 
@@ -93,7 +93,7 @@ Get the token for entry: back in the terminal, look at the docker log; copy and 
     $ docker logs containername 
    
 <p align="center">
-<img src="docs/enterContainerwithJupyter.png" width="50%">
+<img src="docs/enterContainerwithJupyter.png" width="90%">
 </p>
   
 Then, you can open the notebook provided, to [check your installation](/checkTFversion_and_GPU.ipynb) and play around with other ways this Docker could be useful to you. 
