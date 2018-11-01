@@ -1,8 +1,6 @@
-## NOTE: currently this container does not give the user full functionality of pip install DeepLabCut, but it does install the dependences (including TensorFlow 1.8 with GPU support). 
-
 # Docker Environment for DeepLabCut2.0
 
-This package will allow you to run [DeepLabCut](https://github.com/AlexEMG/DeepLabCut) with everything pre-installed inside a Docker container. To note, the GUIs will not work in Docker, so we recommend you use them in an Anaconda Environemnt (see main repo for installation instructions). The use-case for the Docker is for the steps that requite a GPU, namely training and inference (i.e. video analysis). This can be done inside this container on your computer, or deployed to a cloud!
+This package will allow you to run [DeepLabCut](https://github.com/AlexEMG/DeepLabCut) with everything pre-installed inside a Docker container. To note, the GUIs will not work in Docker, so we recommend you use them in an Anaconda Environment (see main repo for installation instructions). The use-case for the Docker is for the steps that requite a GPU, namely training and inference (i.e. video analysis). This can be done inside this container on your computer, or deployed to a cloud!
 
 This Docker file is based off the [Bethge lab container](https://github.com/bethgelab/docker). Specifically, the one we provide comes with **Ubuntu 16.04 + CUDA 9.0 + CuDNN v7** and **Tensorflow 1.8** and the required python packages. 
 
@@ -61,7 +59,9 @@ Options:
 ```
 GPU=1 bash ./dlc-docker run -d -p 2351:8888 -e USER_HOME=$HOME/DeepLabCut --name containername dlc_username/dlcdocker
 ```
-Do not run this with sudo. Now you can enter your container in the terminal, or via a browser interface: 
+Do not run this with sudo. 
+
+## Using the Docker for Training and Video Analysis:
 
  - Enter the container via the terminal (to get terminal access in container):
 ```
@@ -70,20 +70,33 @@ docker exec --user $USER -it containername /bin/bash
 Access your linked (internal home) directory:
 ```
 cd ../../../home/
-```
-- Enter the container via a browser interface (i.e Jupyter Notebook):
+```  
+<p align="center">
+<img src="docs/entercontainerterminal.png" width="50%">
+</p>
 
-Go to the port you specified, i.e. in our example enter http://localhost:2351 in Google Chrome.
-Get the token: in the terminal look at the docker log; copy and paste the value after "token=":
+Now, for the training and video analysis you need to supress the GUI support: 
 
-    $ docker logs containername 
-  
+``Linux: export DLClight=True``
 
-[Check your installation](/checkTFversion_and_GPU.ipynb)
+<p align="center">
+<img src="docsexport.png" width="50%">
+</p>
 
 Now you have an Ubuntu with **Python3** and a GPU-installed with **Tensorflow 1.8**, and all the other dependencies ... installed! Happy DeepLabCutting! 
 
+## Jupyter + Docker:
 
+This container could also be used for other things besides DeepLabCut, so you might want to utlitize the features in Jupyter, i.e. you can also go into the terminal separately via a browser interface (i.e Google Chrome + a Jupyter Notebook) to check out what's inside. For this, go to the port you specified, i.e. in our example enter http://localhost:2351 in Google Chrome.
+Get the token for entry: back in the terminal, look at the docker log; copy and paste the value after "token=":
+
+    $ docker logs containername 
+   
+<p align="center">
+<img src="docs/enterContainerwithJupyter.png" width="50%">
+</p>
+  
+Then, you can open the notebook provided, to [check your installation](/checkTFversion_and_GPU.ipynb) and play around with other ways this Docker could be useful to you. 
 
 # Docker Quick Tips:
 Check which containers are running:
