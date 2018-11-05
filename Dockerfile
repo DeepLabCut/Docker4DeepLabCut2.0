@@ -7,7 +7,7 @@ FROM bethgelab/deeplearning:cuda9.0-cudnn7
 RUN apt-get update
 RUN apt-get -y install ffmpeg
 
-RUN pip3 install deeplabcut==0.0.dev1
+RUN pip3 install deeplabcut
 #install the dependenices, but not the full package yet... 
 
 RUN pip install tensorflow-gpu==1.8
