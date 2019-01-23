@@ -18,18 +18,11 @@ Test docker:
     
  The output should be: ``Hello from Docker! This message shows that your installation appears to be working correctly.``
 
-
-
-**(2)** Install nvidia-docker, see https://github.com/nvidia/nvidia-docker/wiki/Installation-(version-1.0). Specifically for linux follow, https://nvidia.github.io/nvidia-docker/.
+**(2)** Install nvidia-docker (version 1 only), see https://github.com/nvidia/nvidia-docker/wiki/Installation-(version-1.0). Specifically for linux follow, https://nvidia.github.io/nvidia-docker/.
 But, basically it is just: 
 
     $ sudo apt-get install nvidia-docker
     
-**TIP:**
-You can test your nvidia-docker installation by running:
-```
-nvidia-docker run --rm nvidia/cuda nvidia-smi
-```
 **(3)** Add your user to the docker group (https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user)
 Quick guide  to create the docker group and add your user: 
 Create the docker group.
@@ -39,7 +32,7 @@ Add your user to the docker group.
 
     $ sudo usermod -aG docker $USER
 
-(perhaps open a new terminal to make sure that you are added from now on)
+(perhaps restart or (at min) open a new terminal to make sure that you are added from now on)
 Lastly, download this Docker: 
 ```
 git clone https://github.com/MMathisLab/Docker4DeepLabCut2.0
