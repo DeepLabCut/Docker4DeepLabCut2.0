@@ -12,6 +12,13 @@ NOTE: [this container does not work on windows hosts!](https://github.com/NVIDIA
 ## Prerequisites
 
 **(1)** Install Docker. See https://docs.docker.com/install/ & for Ubuntu: https://docs.docker.com/install/linux/docker-ce/ubuntu/
+Test docker: 
+
+    $ sudo docker run hello-world
+    
+ The output should be: ``Hello from Docker! This message shows that your installation appears to be working correctly.``
+
+
 
 **(2)** Install nvidia-docker, see https://github.com/nvidia/nvidia-docker/wiki/Installation-(version-1.0). Specifically for linux follow, https://nvidia.github.io/nvidia-docker/.
 But, basically it is just: 
