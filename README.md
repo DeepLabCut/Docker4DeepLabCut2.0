@@ -41,7 +41,7 @@ cd Docker4DeepLabCut2.0
 
 ## Step-by-step instructions for creating the Docker environment:
 
-Next create the image. The image needs only be created **once**. All the required software will be downloaded from DockerHub. (you can pick a user name and container name other than dlc_username/dlcdocker if you want):
+Next create the image. The image needs only be created once to use the commands below (i.e. you can enter, stop and re-enter a container again).  However, if you want to **UPGRADE YOUR DEEPLABCUT package**, you should build a new image! All the required software will be downloaded from DockerHub. (you can pick a user name and container name other than dlc_username/dlcdocker if you want):
 ```
 docker image build -t dlc_username/dlcdocker .
 ```
