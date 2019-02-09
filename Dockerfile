@@ -17,3 +17,12 @@ RUN pip install ipywidgets
 RUN pip3 install ipywidgets
 
 RUN pip3 install seaborn
+
+RUN pip install -U \
+    -f https://extras.wxpython.org/wxPython4/extras/linux/gtk3/ubuntu-16.04 \
+    wxPython
+
+# Install libgtk-3-dev (required by wxPython) and python3-tk (matplotlib)
+RUN apt-get update && apt-get install -y \
+    libgtk-3-0 \
+    python3-tk
