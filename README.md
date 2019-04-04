@@ -24,6 +24,12 @@ Test docker:
 But, basically it is just: 
 
     $ sudo apt-get install nvidia-docker
+  
+  *you can also run: ``sudo docker run --runtime=nvidia --rm nvidia/cuda:9.0-base nvidia-smi`` to test your nvidia-docker, and if you get the error ``docker: Error response from daemon: Unknown runtime specified nvidia.`` just simply restart docker: 
+  
+       $ sudo systemctl daemon-reload
+       $ sudo systemctl restart docker
+
     
 **(3)** Add your user to the docker group (https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user)
 Quick guide  to create the docker group and add your user: 
