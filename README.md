@@ -69,8 +69,6 @@ GPU=1 bash ./dlc-docker run -d -p 2351:8888 -e USER_HOME=$HOME/DeepLabCut --name
 ```
 Do not run this with sudo. 
 
-## Using the Docker for Training and Video Analysis:
-
  - Enter the container via the terminal (to get terminal access in container):
 ```
 docker exec --user $USER -it containername /bin/bash
@@ -105,6 +103,10 @@ Get the token for entry: back in the terminal, look at the docker log; copy and 
 </p>
   
 Then, you can open the notebook provided, to [check your installation](/checkTFversion_and_GPU.ipynb) and play around with other ways this Docker could be useful to you. 
+
+Here is an example Notebook for using DeepLabCut with Jupyter: https://github.com/AlexEMG/DeepLabCut/blob/master/examples/Docker_TrainNetwork_VideoAnalysis.ipynb
+
+## Using the Docker for Training and Video Analysis:
 
 # Docker Quick Tips:
 Check which containers are running:
