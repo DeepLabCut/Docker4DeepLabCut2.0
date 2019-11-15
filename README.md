@@ -20,7 +20,7 @@ Test docker:
     
  The output should be: ``Hello from Docker! This message shows that your installation appears to be working correctly.``
 
-**(2)** Install nvidia-docker (version 1 only), see https://github.com/nvidia/nvidia-docker/wiki/Installation-(version-1.0). Specifically for linux follow, https://nvidia.github.io/nvidia-docker/.
+**(2)** Install nvidia-docker, see https://nvidia.github.io/nvidia-docker/.
 But, basically it is just: 
 
     $ sudo apt-get install nvidia-docker
