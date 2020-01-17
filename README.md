@@ -62,7 +62,7 @@ Options:
 - change port: (i.e. ``2351`` can be ``777``, etc)
 - change which GPU to use (check which GPU you want to use in the terminal by running ``nvidia-smi``)
 - change the name: --name ``containername``  can be anything you want
-- change the home fodler:``-e USER_HOME=$HOME/DeepLabCut``  (i.e. this can be ``-e USER_HOME=$HOME/whateveryouwant``)
+- change the home folder:``-e USER_HOME=$HOME/DeepLabCut``  (i.e. this can be ``-e USER_HOME=$HOME/whateveryouwant``)
 
 ```
 GPU=1 bash ./dlc-docker run -d -p 2351:8888 -e USER_HOME=$HOME/DeepLabCut --name containername dlc_username/dlcdocker
