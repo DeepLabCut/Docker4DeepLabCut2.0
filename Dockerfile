@@ -10,7 +10,7 @@ RUN add-apt-repository --remove ppa:jonathonf/python-3.6 #REMOVES BROKEN REPO
 RUN apt-get update
 RUN apt-get -y install ffmpeg
 
-RUN pip install --upgrade pip
+#RUN pip install --upgrade pip #see issue #25
 RUN pip install tensorflow-gpu==1.8
 RUN pip3 install deeplabcut
 RUN pip install ipywidgets
