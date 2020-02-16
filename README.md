@@ -1,4 +1,4 @@
-# Docker Environment for DeepLabCut2.0
+# Docker Environment for DeepLabCut2.0+
 
 This package will allow you to run [DeepLabCut2.x](https://github.com/AlexEMG/DeepLabCut) with everything pre-installed inside a Docker container. This base container is mainly useful for server deployment for training networks and video analysis (i.e. you can move this to your server, University Cluster, AWS, etc) as it assumes you have no display. 
 
@@ -23,7 +23,7 @@ Test docker:
 **(2)** Install nvidia-docker, see https://nvidia.github.io/nvidia-docker/.
 But, basically it is just: 
 
-    $ sudo apt-get install nvidia-docker
+    $ sudo apt-get install nvidia-docker2
   
   *you can also run: ``sudo docker run --runtime=nvidia --rm nvidia/cuda:9.0-base nvidia-smi`` to test your nvidia-docker, and if you get the error ``docker: Error response from daemon: Unknown runtime specified nvidia.`` just simply restart docker: 
   
@@ -102,11 +102,13 @@ Get the token for entry: back in the terminal, look at the docker log; copy and 
 <img src="docs/enterContainerwithJupyter.png" width="90%">
 </p>
   
-Then, you can open the notebook provided, to [check your installation](/checkTFversion_and_GPU.ipynb) and play around with other ways this Docker could be useful to you. 
+Then, you can open the notebook provided, to [check your installation](/checkTFversion_and_GPU.ipynb) and play around with other ways this Docker could be useful to you.
+
+## Using the Docker for Training and Video Analysis:
 
 Here is an example Notebook for using DeepLabCut with Jupyter: https://github.com/AlexEMG/DeepLabCut/blob/master/examples/Docker_TrainNetwork_VideoAnalysis.ipynb
 
-## Using the Docker for Training and Video Analysis:
+
 
 # Docker Quick Tips:
 Check which containers are running:
