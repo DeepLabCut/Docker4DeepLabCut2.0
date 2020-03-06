@@ -43,7 +43,7 @@ Add your user to the docker group.
 (perhaps restart or (at min) open a new terminal to make sure that you are added from now on)
 Lastly, download this Docker: 
 ```
-git clone https://github.com/MMathisLab/Docker4DeepLabCut2.0
+git clone https://github.com/DeepLabCut/Docker4DeepLabCut2.0
 cd Docker4DeepLabCut2.0
 ```
 
