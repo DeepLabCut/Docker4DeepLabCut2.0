@@ -2,7 +2,7 @@
 
 This package will allow you to run [DeepLabCut2.x](https://github.com/AlexEMG/DeepLabCut) with everything pre-installed inside a Docker container. This base container is mainly useful for server deployment for training networks and video analysis (i.e. you can move this to your server, University Cluster, AWS, etc) as it assumes you have no display. 
 
-However, if you want to use the GUIs, there is a "heavy" image (16 GB) that [eqs](https://github.com/eqs) built from our original container. It is a folder inside this repo as "GUISupport_DLCDocker", but also please see [here](https://github.com/eqs/DeepLabCut-Docker) for more information.
+However, if you want to use the GUIs, there is a "heavy" image (16 GB) that [eqs](https://github.com/eqs) built from our original container, please see [here](https://github.com/eqs/DeepLabCut-Docker) for more information.
 
 This Docker file is based off the [Bethge lab container](https://github.com/bethgelab/docker). Specifically, the one we provide comes with **Ubuntu 16.04 + CUDA 9.0 + CuDNN v7** and **Tensorflow 1.8** and the required python packages. 
 
@@ -20,10 +20,15 @@ Test docker:
     
  The output should be: ``Hello from Docker! This message shows that your installation appears to be working correctly.``
 
-**(2)** Install nvidia-docker, see https://nvidia.github.io/nvidia-docker/.
-But, basically it is just: 
+**(2)** NEW, as of Docker 19.03+ gpu support is native, so you don't have to install NVIDIA-DOCKER. 
 
-    $ sudo apt-get install nvidia-docker2
+Check which Docker you have installed:
+
+    $ docker version
+
+  - LEGACY, for pre Docker 19.03: Install nvidia-docker, see https://nvidia.github.io/nvidia-docker/. But, basically it is just: 
+
+        $ sudo apt-get install nvidia-docker2
   
   *you can also run: ``sudo docker run --runtime=nvidia --rm nvidia/cuda:9.0-base nvidia-smi`` to test your nvidia-docker, and if you get the error ``docker: Error response from daemon: Unknown runtime specified nvidia.`` just simply restart docker: 
   
@@ -31,7 +36,7 @@ But, basically it is just:
        $ sudo systemctl restart docker
 
     
-**(3)** Add your user to the docker group (https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user)
+**(3)** to avoid using sudo, add your user to the docker group (https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user)
 Quick guide  to create the docker group and add your user: 
 Create the docker group.
 
