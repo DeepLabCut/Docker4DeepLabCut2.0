@@ -65,6 +65,10 @@ Options:
 - change the home folder:``-e USER_HOME=$HOME/DeepLabCut``  (i.e. this can be ``-e USER_HOME=$HOME/whateveryouwant``)
 
 ```
+# Create the DLC directory if it does not already exist
+mkdir -p $HOME/DeepLabCut # or $HOME/whateveryouwant (see the options above)
+
+# Run the docker container
 GPU=1 bash ./dlc-docker run -d -p 2351:8888 -e USER_HOME=$HOME/DeepLabCut --name containername dlc_username/dlcdocker
 ```
 Do not run this with sudo. 
