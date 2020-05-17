@@ -13,6 +13,8 @@ This Docker file is based off the [Bethge lab container](https://github.com/beth
 
 Note, please check your NVIDIA driver is up to date (for CUDA 9 you need > 384.xx).  Please check your driver/CUDA/TensorFlow version on [this Stackoverflow post](https://stackoverflow.com/questions/30820513/what-is-the-correct-version-of-cuda-for-my-nvidia-driver/30820690#30820690).
 
+Here are my tips for setting up your GPU machine (ubuntu 18.04): https://github.com/DeepLabCut/Docker4DeepLabCut2.0/wiki/Installation-of-NVIDIA-driver-and-CUDA-10
+
 
 NOTE: [this container does not work on windows hosts!](https://github.com/NVIDIA/nvidia-docker/issues/43)
 
