@@ -7,6 +7,7 @@ RUN pip install imageio-ffmpeg
 FROM bethgelab/deeplearning:cuda9.0-cudnn7
 RUN add-apt-repository ppa:deadsnakes/ppa #ADDS NEW REPO
 RUN add-apt-repository --remove ppa:jonathonf/python-3.6 #REMOVES BROKEN REPO
+RUN apt-get install -y apt-utils
 RUN apt-get update
 RUN apt-get -y install ffmpeg
 
