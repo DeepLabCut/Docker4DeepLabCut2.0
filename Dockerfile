@@ -12,7 +12,7 @@ RUN apt-get -y install ffmpeg
 
 #RUN pip install --upgrade pip #see issue #25
 RUN pip install tensorflow-gpu==1.8
-RUN pip3 install deeplabcut
+RUN pip3 install deeplabcutcore
 RUN pip install ipywidgets
 RUN pip3 install ipywidgets
 RUN pip3 install seaborn
