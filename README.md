@@ -90,9 +90,11 @@ cd ../../../home/
 <img src="docs/entercontainerterminal.png" width="100%">
 </p>
 
-Now, for the training and video analysis you need to supress the GUI support: 
+ If you are using a container that has `pip install deeplabcut` in the dockerfile: you need to supress the GUI support: 
 
 ``Linux: export DLClight=True``
+
+Note, we also now have a headless deeplabcut that does not have GUI support (now the default in this repo as of 5/17/2020): i.e., dockerfile uses `pip install deeplabcutcore`
 
 <p align="center">
 <img src="docs/export.png" width="100%">
