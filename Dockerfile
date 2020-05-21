@@ -16,7 +16,7 @@ RUN pip install tensorflow-gpu==1.8
 RUN pip install --upgrade pip 
 
 RUN pip install ruamel_yaml
-RUN pip3 install deeplabcutcore
+RUN pip3 install deeplabcut
 RUN pip install ipywidgets
 RUN pip3 install ipywidgets
 RUN pip3 install seaborn
