@@ -28,8 +28,15 @@ Test docker:
     
  The output should be: ``Hello from Docker! This message shows that your installation appears to be working correctly.``
 
-**(2)** Install nvidia-docker, see https://nvidia.github.io/nvidia-docker/.
+**(2)** Install nvidia-docker if you have Ubunutu < or = to 18.04, see https://nvidia.github.io/nvidia-docker/. Otherwise it is now batively installed.
 But, basically it is just: 
+
+    $ curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | \
+    sudo apt-key add -
+    $ distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+    $ curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | \
+    sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+    $ sudo apt-get update
 
     $ sudo apt-get install nvidia-docker2
   
