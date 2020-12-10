@@ -28,7 +28,7 @@ Test docker:
     
  The output should be: ``Hello from Docker! This message shows that your installation appears to be working correctly.``
 
-**(2)** Install nvidia-docker if you have Ubunutu < or = to 18.04, see https://nvidia.github.io/nvidia-docker/. Otherwise it is now batively installed.
+**(2)** Install nvidia-docker if you have Ubuntu < or = to 18.04, see https://nvidia.github.io/nvidia-docker/. Otherwise it is now natively installed.
 But, basically it is just: 
 
     $ curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | \
