@@ -5,13 +5,13 @@ RUN pip install imageio
 RUN pip install imageio-ffmpeg
 
 
-FROM bethgelab/deeplearning:cuda9.0-cudnn7
+FROM bethgelab/deeplearning:cuda10.0-cudnn8
 RUN add-apt-repository ppa:deadsnakes/ppa #ADDS NEW REPO
-RUN add-apt-repository --remove ppa:jonathonf/python-3.6 #REMOVES BROKEN REPO
+#RUN add-apt-repository --remove ppa:jonathonf/python-3.6 #REMOVES BROKEN REPO #removed dec 2020
 RUN apt-get update && apt-get -y install ffmpeg && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 
-RUN pip install tensorflow-gpu==1.8
+RUN pip install tensorflow-gpu==1.13.1
 #see issue #25:
 RUN pip install --upgrade pip 
 
